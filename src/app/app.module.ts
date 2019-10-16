@@ -43,6 +43,7 @@ import { LoadingBarRouterModule } from "@ngx-loading-bar/router";
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { CurrencyMaskModule } from "ng2-currency-mask";
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 //flexlayout Module
 import { FlexLayoutModule } from '@angular/flex-layout';
 // for Core import:
@@ -128,6 +129,7 @@ import { NotFoundPageComponent } from './rotas/not-found-page/not-found-page.com
     MatMomentDateModule,
     NgxMaskModule.forRoot(),
     ToastrModule.forRoot(),
+    MatCarouselModule.forRoot(),
     ImageCropperModule,
     CurrencyMaskModule
   ],

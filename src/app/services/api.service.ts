@@ -38,6 +38,7 @@ export class ApiService {
             this.token = res
             localStorage.setItem('token', res)
             this.loadingBar.complete()
+
           }).catch(e => {
             this.loadingBar.complete()
           })
@@ -45,6 +46,27 @@ export class ApiService {
       } catch (error) {
         this.afAuth.auth.signOut();
       }
+    });
+  }
+
+  doGoogleLogin() {
+    return new Promise<any>((resolve, reject) => { })
+  }
+
+  doFacebookLogin() {
+    return new Promise<any>((resolve, reject) => {
+      let provider = new firebase.auth.FacebookAuthProvider();
+      this.afAuth.auth.signInWithPopup(provider).then(
+        res => {
+          resolve(res);
+
+        },
+        err => {
+          console.log(err);
+
+          reject(err);
+        }
+      );
     });
   }
 }

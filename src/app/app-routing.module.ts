@@ -13,7 +13,7 @@ const routes: Routes = [
   {
     path: 'index', component: PromoComponent
   },
-  { path: "", redirectTo: "/index", pathMatch: "full" },
+  { path: "", redirectTo: "/login", pathMatch: "full" },
   { path: "**", component: NotFoundPageComponent }];
 
 @NgModule({

@@ -4,6 +4,7 @@
         <mat-icon class="menu-botao" (click)="sidenav.toggle()">
             menu
         </mat-icon>
+        <span>Gastando Pouco</span>
         <span class="example-spacer"></span>
         <button mat-mini-fab [matMenuTriggerFor]="menuLogin" color="primary">
             <mat-icon>shop</mat-icon>
@@ -13,9 +14,10 @@
                 <mat-icon>account_circle</mat-icon> Login
             </button>
             <button mat-menu-item (click)="linkRota('register')">
-                <mat-icon>person_add</mat-icon> Register
+                <mat-icon>loyalty</mat-icon> Register
             </button>
         </mat-menu>
+
     </mat-toolbar>
     <mat-sidenav-container class="example-container min-container" autosize>
         <mat-sidenav #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'" class="example-sidenav">

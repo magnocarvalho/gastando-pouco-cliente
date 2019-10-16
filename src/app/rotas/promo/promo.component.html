@@ -1,1 +1,39 @@
-<p>promo works!</p>
+<mat-toolbar-row color="primary">
+    <span>Cornelio Procopio</span>
+    <span class="example-spacer"></span>
+    <mat-icon class="menu-botao" color="primary">
+        favorite
+    </mat-icon>
+    <mat-icon class="menu-botao" color="primary">
+        filter_list
+    </mat-icon>
+</mat-toolbar-row>
+<mat-card>
+    <mat-card-header>
+        <img matCardAvatar [src]="objTemp.photoURL">
+        <mat-card-title>{{objTemp.displayName}}</mat-card-title>
+        <mat-card-subtitle>{{objTemp.tipo}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <!-- <span *ngFor="let item of objTemp.promos">
+            <img [src]="item.thumbnail">
+
+            <p>{{item.about}}</p>
+
+
+        </span> -->
+        <mat-carousel timings="250ms ease-in" [autoplay]="false" interval="5000" color="primary" maxWidth="auto" proportion="100" [loop]="true" [hideArrows]="false" [hideIndicators]="false" [useKeyboard]="false" [useMouseWheel]="false" orientation="ltr">
+            <mat-carousel-slide #matCarouselSlide *ngFor="let slide of objTemp.promos; let i = index" [image]="slide.thumbnail" overlayColor="#00000040" [hideOverlay]="false">
+                <p>{{slide.title}}</p>
+            </mat-carousel-slide>
+        </mat-carousel>
+    </mat-card-content>
+    <mat-card-actions align="start">
+        <button mat-button>Action1</button>
+        <button mat-button>Action2</button>
+
+    </mat-card-actions>
+    <mat-card-footer>
+        Footer
+    </mat-card-footer>
+</mat-card>
