@@ -50,20 +50,28 @@ export class ApiService {
   }
 
   doGoogleLogin() {
-    return new Promise<any>((resolve, reject) => { })
+    let provider = new firebase.auth.GoogleAuthProvider();
+    return this.singIn(provider)
+  }
+
+  doTwitterLogin() {
+    let provider = new firebase.auth.FacebookAuthProvider();
+    return this.singIn(provider)
   }
 
   doFacebookLogin() {
+    let provider = new firebase.auth.FacebookAuthProvider();
+    return this.singIn(provider)
+  }
+
+  singIn(provider) {
     return new Promise<any>((resolve, reject) => {
-      let provider = new firebase.auth.FacebookAuthProvider();
       this.afAuth.auth.signInWithPopup(provider).then(
         res => {
           resolve(res);
-
         },
         err => {
           console.log(err);
-
           reject(err);
         }
       );
