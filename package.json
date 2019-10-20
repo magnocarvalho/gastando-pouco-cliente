@@ -1,6 +1,6 @@
 {
     "name": "app-cliente",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "scripts": {
         "ng": "ng",
         "start": "ng serve --open",
@@ -37,8 +37,11 @@
         "ngx-captcha": "^7.0.0",
         "ngx-image-cropper": "^2.0.0",
         "ngx-mask": "^8.0.6",
+        "ngx-swiper-wrapper": "^8.0.2",
         "ngx-toastr": "^11.1.0",
+        "ngx-useful-swiper": "^8.0.1",
         "rxjs": "~6.4.0",
+        "swiper": "^5.1.0",
         "tslib": "^1.10.0",
         "zone.js": "~0.9.1"
     },
@@ -51,6 +54,7 @@
         "@types/jasmine": "~3.3.8",
         "@types/jasminewd2": "~2.0.3",
         "@types/node": "~8.9.4",
+        "@types/swiper": "^4.4.6",
         "codelyzer": "^5.0.0",
         "jasmine-core": "~3.4.0",
         "jasmine-spec-reporter": "~4.2.1",

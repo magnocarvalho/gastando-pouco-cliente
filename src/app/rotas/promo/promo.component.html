@@ -12,24 +12,48 @@
     <mat-card-header>
         <img matCardAvatar [src]="objTemp.photoURL">
         <mat-card-title>{{objTemp.displayName}}</mat-card-title>
-        <mat-card-subtitle>{{objTemp.tipo}}</mat-card-subtitle>
+        <mat-card-subtitle>{{objTemp.tipo.value}}</mat-card-subtitle>
     </mat-card-header>
+    <mat-card-content>
+        <swiper [config]="config" #swipper>
+            <div class="swiper-wrapper" #swipperrapper>
+                <div class="swiper-slide" *ngFor="let item of objTemp.promos; let i of index">
+                    <div class="card-imagem" fxLayout="column">
+                        <div class="controle-imagem">
+                            <div class="div-controle">
+                                <img class="imagem-carrosel" [src]="item.thumbnail" #swipperitem>
+                                <div class="valor-antigo">{{item.descont | percent: '2.2-2'}}</div>
+                                <div class="valor-desconto">
+                                    <div class="valor-por div-desc">
+                                        De: {{item.initPrice | currency: 'BRL' }}
+                                    </div>
+                                    <div class="valor-de div-desc">
+                                        Por: {{item.endPrice | currency: 'BRL' }}
+                                    </div>
 
-    <mat-tab-group mat-stretch-tabs headerPosition="below" mat-align-tabs="center" color="primary" backgroundColor="primary">
-        <mat-tab *ngFor="let item of objTemp.promos">
-            <ng-template mat-tab-label>
-                <mat-icon class="example-tab-icon">thumb_up</mat-icon>
-                {{item.title}}
-            </ng-template>
-            <img matCardImage [src]="item.thumbnail">
-            <p>{{item.about}}</p>
-        </mat-tab>
-    </mat-tab-group>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <p>{{item.about}}</p>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-pagination"></div>
+
+            <div class="swiper-button-prev" *ngIf="objTemp.promos.length != 1"></div>
+            <div class="swiper-button-next" *ngIf="objTemp.promos.length != 1"></div>
+        </swiper>
+        <button mat-raised-button>Check-in</button>
+        <button mat-raised-button color="primary">Check-in</button>
+    </mat-card-content>
     <mat-card-actions align="start">
-        <button mat-raised-button (click)="onClick">Action</button>
-        <button mat-raised-button (click)="onClick">Action</button>
-        <button mat-raised-button (click)="onClick" color="primary">Action</button>
+        <!-- <button mat-raised-button (click)="onClick">Action</button>
+        <button mat-raised-button (click)="onClick">Action</button> -->
+        <button mat-raised-button color="primary">Action</button>
     </mat-card-actions>
     <mat-card-footer>
     </mat-card-footer>

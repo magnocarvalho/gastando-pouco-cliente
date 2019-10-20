@@ -2,6 +2,7 @@
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "~ngx-toastr/toastr";
+@import '~swiper/css/swiper.min.css';
 body,
 html {
     min-height: 100%;

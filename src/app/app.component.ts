@@ -41,4 +41,9 @@ export class AppComponent {
   linkRota(tmp) {
     this.rota.navigate([tmp]);
   }
+
+  logout() {
+    this.api.doLogout()
+    this.rota.navigate(['login'])
+  }
 }

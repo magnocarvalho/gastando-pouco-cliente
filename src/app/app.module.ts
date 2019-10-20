@@ -48,6 +48,7 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { FlexLayoutModule } from '@angular/flex-layout';
 // for Core import:
 import { LoadingBarModule } from "@ngx-loading-bar/core";
+import { NgxUsefulSwiperModule } from "ngx-useful-swiper"
 // firebase
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AngularFireModule } from "@angular/fire";
@@ -131,7 +132,9 @@ import { NotFoundPageComponent } from './rotas/not-found-page/not-found-page.com
     ToastrModule.forRoot(),
     MatCarouselModule.forRoot(),
     ImageCropperModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    NgxUsefulSwiperModule,
+
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'pt-br' },

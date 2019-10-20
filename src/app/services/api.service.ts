@@ -8,6 +8,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { ToastrService } from 'ngx-toastr';
 import * as firebase from "firebase/app";
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ import { HttpClient } from '@angular/common/http';
 export class ApiService {
   public user: Observable<firebase.User>;
   private token: String = null;
+  private baseurl = environment.baseURL
   public firebaseUser: User = {
     uid: null,
     email: null,
@@ -77,4 +79,120 @@ export class ApiService {
       );
     });
   }
+
+  doLogout() {
+    return new Promise((resolve, reject) => {
+      if (firebase.auth().currentUser) {
+        this.afAuth.auth.signOut().finally(() => {
+          localStorage.setItem('user', null);
+          this.token = null;
+          this.firebaseUser = null;
+
+          resolve();
+        });
+      } else {
+        reject();
+      }
+    });
+  }
+
+  getData(rota, param?): Observable<any> {
+    return new Observable(observer => {
+      let url = this.baseurl
+      let params = {}
+      if (param) {
+        url = url + rota
+        params = { empresa: param }
+      } else {
+        url = url + rota
+      }
+      // console.log({ url, rota, param })
+      this.getTokenHeader()
+        .then(tokenOptions => {
+          return this.http.get(`${url}`, { headers: tokenOptions, params })
+            .subscribe(res => {
+              // console.log(res);
+
+              observer.next(res);
+              observer.complete();
+            })
+        })
+        .catch((error: any) => {
+          observer.error(error);
+          observer.complete();
+        });
+    });
+  }
+
+  postData(rota, obj): Observable<any> {
+    this.loadingBar.start()
+    if (rota != 'user')
+      obj['createduid'] = this.firebaseUser.uid
+    return new Observable(observer => {
+      this.getTokenHeader()
+        .then(tokenOptions => {
+          return this.http.post(this.baseurl + rota, obj, { headers: tokenOptions })
+            .subscribe(res => {
+              observer.next(res);
+              observer.complete();
+              this.loadingBar.complete()
+            })
+        })
+        .catch((error: any) => {
+          observer.error(error);
+          observer.complete();
+          this.loadingBar.complete()
+        });
+    });
+  }
+
+  putData(rota, obj): Observable<any> {
+    this.loadingBar.start()
+    if (rota != 'user')
+      obj['modifieduid'] = this.firebaseUser.uid
+    return new Observable(observer => {
+      this.getTokenHeader()
+        .then(tokenOptions => {
+          return this.http.put(this.baseurl + rota, obj, { headers: tokenOptions })
+            .subscribe(res => {
+              observer.next(res);
+              observer.complete();
+              this.loadingBar.complete()
+            })
+        })
+        .catch((error: any) => {
+          observer.error(error);
+          observer.complete();
+          this.loadingBar.complete()
+        });
+    });
+  }
+
+  async getTokenHeader() {
+    if (!this.token) {
+      let tk = await localStorage.getItem('token')
+      if (tk) {
+        this.token = tk
+        let tokenHeader = {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${tk}`
+        };
+        return tokenHeader;
+      }
+
+    }
+    if (this.token) {
+      let tokenHeader = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.token}`
+      };
+      return tokenHeader;
+    }
+
+  }
+
+  showSuccess(mensagem) {
+    this.toastr.success(mensagem, 'Sucesso');
+  }
+
 }
