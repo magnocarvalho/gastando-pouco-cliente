@@ -20,13 +20,18 @@
                 <mat-icon>close</mat-icon> Logout
             </button>
         </mat-menu>
-
     </mat-toolbar>
     <mat-sidenav-container class="example-container min-container" autosize>
         <mat-sidenav #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'" class="example-sidenav">
             <mat-nav-list>
-                <mat-list-item [routerLink]="[ '/login' ]" routerLinkActive="active">
-                    <mat-icon>money</mat-icon> Admin
+                <mat-list-item [routerLink]="[ '/index' ]" routerLinkActive="active">
+                    <mat-icon>money</mat-icon> Promoçoes
+                </mat-list-item>
+                <mat-list-item [routerLink]="[ '/maps' ]" routerLinkActive="active">
+                    <mat-icon>map</mat-icon> Mapa
+                </mat-list-item>
+                <mat-list-item [routerLink]="[ '/favorite' ]" routerLinkActive="active">
+                    <mat-icon>favorite</mat-icon> Favoritos
                 </mat-list-item>
             </mat-nav-list>
         </mat-sidenav>

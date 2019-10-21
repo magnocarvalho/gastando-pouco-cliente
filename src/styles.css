@@ -66,3 +66,9 @@ mat-toolbar.example-header {
         min-height: calc(100vh - 54px) !important;
     }
 }
+.mat-content {
+    align-items: center !important;
+  }
+  .mat-slider{
+      padding: 0 !important;
+  }

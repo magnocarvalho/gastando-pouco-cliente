@@ -96,23 +96,12 @@ export class ApiService {
     });
   }
 
-  getData(rota, param?): Observable<any> {
+  getData(rota, params = {}): Observable<any> {
     return new Observable(observer => {
-      let url = this.baseurl
-      let params = {}
-      if (param) {
-        url = url + rota
-        params = { empresa: param }
-      } else {
-        url = url + rota
-      }
-      // console.log({ url, rota, param })
       this.getTokenHeader()
         .then(tokenOptions => {
-          return this.http.get(`${url}`, { headers: tokenOptions, params })
+          return this.http.get(`${this.baseurl}${rota}`, { headers: tokenOptions, params })
             .subscribe(res => {
-              // console.log(res);
-
               observer.next(res);
               observer.complete();
             })
