@@ -4,18 +4,19 @@
         <mat-icon class="menu-botao" (click)="sidenav.toggle()" *ngIf="cliente">
             menu
         </mat-icon>
+        <mat-icon *ngIf="!cliente">loyalty</mat-icon>
         <span>Gastando Pouco</span>
         <span class="example-spacer"></span>
         <button mat-mini-fab [matMenuTriggerFor]="menuLogin" color="primary" *ngIf="cliente">
             <mat-icon>shop</mat-icon>
         </button>
         <mat-menu #menuLogin="matMenu">
-            <button mat-menu-item class="margin-r30" (click)="linkRota('login')">
+            <!-- <button mat-menu-item class="margin-r30" (click)="linkRota('login')">
                 <mat-icon>account_circle</mat-icon> Login
             </button>
             <button mat-menu-item (click)="linkRota('register')">
                 <mat-icon>loyalty</mat-icon> Register
-            </button>
+            </button> -->
             <button mat-menu-item (click)="logout()">
                 <mat-icon>close</mat-icon> Logout
             </button>
