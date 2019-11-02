@@ -108,4 +108,7 @@ text-align: left;
   text-align: left;
   padding-top: 10px;
 }
-
+.tamanho-maximo
+{
+  max-width: 600px;
+}

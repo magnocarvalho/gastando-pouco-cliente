@@ -1,12 +1,12 @@
 <ngx-loading-bar></ngx-loading-bar>
 <ng-container>
     <mat-toolbar color="primary" class="example-header">
-        <mat-icon class="menu-botao" (click)="sidenav.toggle()">
+        <mat-icon class="menu-botao" (click)="sidenav.toggle()" *ngIf="cliente">
             menu
         </mat-icon>
         <span>Gastando Pouco</span>
         <span class="example-spacer"></span>
-        <button mat-mini-fab [matMenuTriggerFor]="menuLogin" color="primary">
+        <button mat-mini-fab [matMenuTriggerFor]="menuLogin" color="primary" *ngIf="cliente">
             <mat-icon>shop</mat-icon>
         </button>
         <mat-menu #menuLogin="matMenu">

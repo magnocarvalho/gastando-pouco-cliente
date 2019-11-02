@@ -25,7 +25,7 @@
         </div>
     </mat-expansion-panel>
 </mat-accordion>
-<mat-card *ngFor="let objTemp of retorno">
+<mat-card *ngFor="let objTemp of retorno" class="tamanho-maximo">
     <mat-card-header>
         <img matCardAvatar [src]="objTemp.photoURL">
         <mat-card-title>{{objTemp.displayName}}</mat-card-title>
